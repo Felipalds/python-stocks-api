@@ -3,7 +3,7 @@ import requests
 import os
 import json
 
-f = open("data.json")
+f = open("data.json", "r+")
 data = json.load(f)
 
 colors = {
@@ -38,9 +38,31 @@ def menu():
             buy()
 
 def buy():
-    stock = input("Type the ticket you are buying (Ex: GGBR4):").strip().capitalize()
-    amount = int(input(f"How much {stock} are you buying? "))
-
+    ticket = input("Type the ticket you are buying (Ex: GGBR4):").strip().capitalize()
+    amount = int(input(f"How much {ticket} are you buying? "))
+    price = getCurrentPrice(ticket)
+    isAdded = False
+    for stock in data['brazil']:
+        if(stock['ticket'].lower() == ticket.lower()):
+            print("Adding existed")
+            stock['history'].append({
+                "price": price, "amount": amount
+            })
+            isAdded = True
+    if not isAdded:
+        print("Adding new")
+        data_brazil = data["brazil"]
+        data_brazil.append({
+            "ticket": ticket, "history":[{
+                "price": price, "amount": amount
+            }]
+        })
+        data["brazil"] = data_brazil
+    with open('data.json', "w") as file:
+        print(data)
+        json.dump(data, file)
+        file.close()
+    menu()
 
 def calculateAverage(history):
     sum = 0
@@ -54,4 +76,3 @@ def getCurrentPrice(ticket):
     data = requests.get(f"{BASE_URL}/{ticket}").json()
     return data["results"][0]["regularMarketPrice"]
 
-f.close()
