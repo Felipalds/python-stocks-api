@@ -25,7 +25,12 @@ def menu():
         for stock in b3:
             averagePrice = calculateAverage(stock["history"])
             currentPrice = getCurrentPrice(stock['ticket'])
-            print(f"{colors['blue']}{stock['ticket'].upper()}{colors['end']} \t\t R${averagePrice:.2f} \t\t R${currentPrice}")
+            stock_name_formatted = str
+            if(len(stock['ticket']) == 6):
+                stock_name_formatted = stock['ticket'].upper()
+            else:
+                stock_name_formatted = stock['ticket'].upper() + " "
+            print(f"{colors['blue']}{stock_name_formatted}{colors['end']} \t\t R${averagePrice:.2f} \t\t R${currentPrice:.2f}")
 
     print("Press [B] to buy a new stock amount\n")
     choice = input().strip().capitalize()
