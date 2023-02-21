@@ -1,0 +1,43 @@
+{
+    "brazil": [
+        {
+            "ticket": "ggbr4",
+            "history": [
+                {
+                    "price" : 30.40,
+                    "amount": 4
+                },
+                {
+                    "price" : 31.00,
+                    "amount": 3
+                }
+            ]
+        },
+        {
+            "ticket": "mxrf11",
+            "history": [
+                {
+                    "price" : 11,
+                    "amount": 4
+                },
+                {
+                    "price" : 9,
+                    "amount": 3
+                }
+            ]
+        },
+        {
+            "ticket": "taee11",
+            "history": [
+                {
+                    "price" : 36,
+                    "amount": 4
+                },
+                {
+                    "price" : 31.00,
+                    "amount": 3
+                }
+            ]
+        }
+    ]
+}
